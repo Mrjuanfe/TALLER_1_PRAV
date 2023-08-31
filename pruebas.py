@@ -1,3 +1,5 @@
-import funciones_copy
+resultado = 7
+k = 5
 
-ecuacion= funciones_copy.pedir_ecuacion()
+C = resultado + ( k % 26 )
+print(C)
