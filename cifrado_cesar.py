@@ -3,31 +3,29 @@ def konstante (mensaje):
     k =int(input(mensaje))
     return k
 
+        
+            
 def mensage (mensaje):
     """
-    esta funcion me ingresa un texto y lo returna; el parametro es un strin 
+    esta funcion me ingresa un texto y melo returna; el parametro es un strin 
     el control es para solo letras en el string
     """
-    
-    posicion = 0
     a = True
-    sentence_1 = input (mensaje)
- 
-    while posicion<len(sentence_1):
 
-        
-        caracter = sentence_1[posicion]
+    while (a):
+
+        sentence_1 = input (mensaje)
+        sentence = sentence_1.split ()  # se separa el string en palabras y los lleva  auna lista
+        sentence = "".join(sentence)  #esta linea toma esa lista y la une
 
         #pregunto si es solo letras
-        if not sentence_1.isalpha () or not sentence_1.isspace ():
-            a = False
+        if (sentence.isalpha ()):
+            a = False                #termina mi ciclo
             return sentence_1
-            posicion+= 1
-        
         
         else:
             print("ingrese una frase con letras de la [A ala Z]")
-"fin primerafuncion"
+
 
 while True:
     
@@ -41,6 +39,8 @@ while True:
 ##Convertir a letras a codigo ASCII
 
         resultado = mensage("Ingrese la frase a codificar: ")
+        resultado=resultado.upper() #convertimos la variable mayuscula porque estamos trabjando con los numeros Ascii del 65 al 90
+        
 
         codificado = []
 
@@ -48,23 +48,22 @@ while True:
         for letra in resultado:
             codificado.append(ord(letra))
     
-        print("El mesaje '{}' se convierte en '{}' ".format(resultado, codificado))
 
 ##Cifrado 
         letras_separadas = []
-        x = 0
+        x = 0 #adentro del for la variable  x la creamos para indicarle posicion dentro de la ecuacuaion
 
-        for i in codificado:
-            print(x)
+        for posicion in codificado: 
+        
             C = codificado [0+x] + ( k % 27 )
-            print(C)
+            
             letras_separadas.append(C)
             x = x + 1
 
 
         print('El Cifrado es :', letras_separadas)
     
-        caracteres = [chr(letra_separada) for letra_separada in letras_separadas ]
+        caracteres = [chr(letra_separada) for letra_separada in letras_separadas ] # convierte el nuevo valor ascii a caracter equivalente
 
         print(caracteres)
 
@@ -83,6 +82,7 @@ while True:
 ##Convertir a letras a codigo ASCII
 
         resultado = mensage("Ingrese la frase a codificar: ")
+        resultado=resultado.upper() #convertimos la variable mayuscula porque estamos trabjando con los numeros Ascii del 65 al 90
 
         codificado = []
 
@@ -98,32 +98,29 @@ while True:
 
 
         for i in codificado:
-            print(x)
+           
             C = codificado [0+x] - ( k % 27 )
-            if C<65:
+            if C<65:                    # Verifica si la resta esta por debajo del rango con el que trabajamos
                 k_negativo = k % 27
-                k_negativo = -k_negativo
-                print(k_negativo)
+                k_negativo = -k_negativo 
+                
                 if k_negativo<0:
-                    k_negativo = k_negativo % 27
-                    print(k_negativo)
-                    print(C)
-                C= 64 + k_negativo
-                print(C)
-            print(C)
-            letras_separadas.append(C)
+                    k_negativo = k_negativo % 27 #Vuelve a realizar el modulo ya que nuestra operacion principal el resultado fue negativo
+                  
+                    
+                C= 64 + k_negativo  #convierte al numero cifrado en cesar equivalente a la nueva clave
+                
+            
+            letras_separadas.append(C)  #anadimos a la lista cada valor en la lista
             x = x + 1
 
 
-        print('El decifrado es :', letras_separadas)
             
         caracteres = [chr(letra_separada) for letra_separada in letras_separadas ]
 
-        print(caracteres)
-
         palabra_codificada = "".join(caracteres)
 
-        print(palabra_codificada)
+        print('La palabra Decifrada es: ',palabra_codificada)
         break
         
     else: 
